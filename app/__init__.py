@@ -1,5 +1,5 @@
 from flask import Flask
-from config import DevConfig
+from app.config import DevConfig
 
 #Initializing the application
 app = Flask(__name__, instance_relative_config=True)

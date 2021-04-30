@@ -6,7 +6,7 @@ import requests
 Quote =quote.Quote
 
 #Getting the quotes base url
-base_url = "http://quotes.stormconsultancy.co.uk/random.json"
+base_url = app.config["QOUTES_API_BASE_URL"]
 
 def get_quotes():
     '''

@@ -1,8 +1,9 @@
-from flask import render_template
-from app import app
-from .request import get_quotes
+from flask import render_template, request, redirect, url_for
+from . import main
+from ..request import get_quotes
+from ..models import Quote
 
-@app.route('/')
+@main.route('/')
 def index():
     '''
     View root page function that returns the index page and its content

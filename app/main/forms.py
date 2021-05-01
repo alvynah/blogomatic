@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField
-from wtforms.validators import Required
+from wtforms import StringField, TextAreaField, SubmitField,ValidationError
+from wtforms.validators import Required, Email
+from ..models import Subscriber
+
 
 
 class UpdateProfile(FlaskForm):
@@ -24,3 +26,12 @@ class UpdateBlogForm(FlaskForm):
     title = StringField("Blog title :", validators=[Required()])
     blog = TextAreaField("Blog :", validators=[Required()])
     submit = SubmitField("Update")
+
+
+class SubscriberForm(FlaskForm):
+    email = StringField('Enter email:', validators=[Required(), Email()])
+    submit = SubmitField('Subscribe')
+
+    def validate_email(self, data_field):
+        if Subscriber.query.filter_by(email=data_field.data).first():
+            raise ValidationError('This email is already subscribed!')

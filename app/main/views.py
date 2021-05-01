@@ -1,12 +1,15 @@
 from flask import render_template, request, redirect, url_for
 from . import main
 from ..request import get_quotes
-from ..models import Quote,User,Blog,Upvote,Downvote,Comment
-from .forms import UpdateProfile, BlogForm, CommentForm, UpdateBlogForm
+from ..models import Quote,User,Blog,Upvote,Downvote,Comment,Subscriber
+from .forms import UpdateProfile, BlogForm, CommentForm, UpdateBlogForm,SubscriberForm
 from .. import db,photos
 from flask_login import login_required,current_user
+from ..email import subscriber_message, new_blog_message
 
-@main.route('/')
+
+
+@main.route('/', methods=["GET", "POST"])
 def index():
     '''
     View root page function that returns the index page and its content
@@ -15,7 +18,16 @@ def index():
     quotes=get_quotes()
     blogview = Blog.get_all_blogs()
 
-    return render_template('index.html', quotes=quotes, blogview=blogview)
+    form = SubscriberForm()
+    if form.validate_on_submit():
+        subscriber = Subscriber(email=form.email.data)
+        db.session.add(subscriber)
+        db.session.commit()
+
+        subscriber_message("Welcome Subscriber","email/welcome_subscriber", subscriber.email, subscriber=subscriber)
+        return redirect(url_for('main.index'))
+
+    return render_template('index.html', quotes=quotes, blogview=blogview, form=form)
 
 
 @main.route('/user/<uname>')
@@ -64,6 +76,8 @@ def update_pic(uname):
 @main.route('/create_new', methods=['POST', 'GET'])
 @login_required
 def new_blog():
+    subscribers= Subscriber.query.all()
+    blog= Blog.query.first()
     form = BlogForm()
     if form.validate_on_submit():
         title = form.title.data
@@ -71,7 +85,13 @@ def new_blog():
         user_id = current_user
         new_blog_object = Blog(blog=blog, user_id=current_user._get_current_object().id, title=title)
         new_blog_object.save_blog()
+
+        for subscriber in subscribers:
+            new_blog_message("New Blog", "email/new_post_alert",subscriber.email, new_blog_object=new_blog_object)
+
+
         return redirect(url_for('main.index'))
+
 
     return render_template('new_blog.html', form=form)
 

@@ -2,6 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+from datetime import datetime
 
 
 @login_manager.user_loader
@@ -24,6 +25,8 @@ class User (UserMixin, db.Model):
     pass_secure = db.Column(db.String(255))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
+    blogs = db.relationship('Blog', backref='user', lazy='dynamic')
+
 
     @property
     def password(self):
@@ -37,3 +40,33 @@ class User (UserMixin, db.Model):
         return check_password_hash(self.pass_secure, password)
     def __repr__(self):
         return f'User {self.username}'
+
+
+class Blog(db.Model):
+    __tablename__ = 'blogs'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    time = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
+    blog = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='SET NULL'), nullable=True)
+
+
+    def save_blog(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete_blog(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    @classmethod
+    def get_user_blogs(cls, id):
+        blogs = Blog.query.filter_by(user_id=id).order_by(Blog.posted_at.desc()).all()
+        return blogs
+
+    @classmethod
+    def get_all_blogs(cls):
+        return Blog.query.order_by(Post.posted_at).all()
+    
+    def __repr__(self):
+        return f'Blog {self.blog}'

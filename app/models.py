@@ -28,6 +28,7 @@ class User (UserMixin, db.Model):
     blogs = db.relationship('Blog', backref='user', lazy='dynamic')
 
 
+
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -49,6 +50,9 @@ class Blog(db.Model):
     time = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
     blog = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='SET NULL'), nullable=True)
+    upvote = db.relationship('Upvote', backref='blog', lazy='dynamic')
+    downvote = db.relationship('Downvote', backref='blog', lazy='dynamic')
+    comment = db.relationship('Comment', backref='blog', lazy='dynamic')
 
 
     def save_blog(self):
@@ -70,3 +74,81 @@ class Blog(db.Model):
     
     def __repr__(self):
         return f'Blog {self.blog}'
+
+
+class Upvote(db.Model):
+    __tablename__ = 'upvotes'
+
+    id = db.Column(db.Integer, primary_key=True)
+    upvote = db.Column(db.Integer, default=1)
+    blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id', ondelete='SET NULL'), nullable=True)
+
+    def save_upvote(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def upvote(cls, id):
+        upvote_post = Upvote(user=current_user, pitch_id=id)
+        upvote_post.save_upvote()
+
+    @classmethod
+    def query_upvotes(cls, id):
+        upvote = Upvote.query.filter_by(pitch_id=id).all()
+        return upvote
+
+    def __repr__(self):
+        return f'{self.blog_id}'
+
+
+class Downvote(db.Model):
+    __tablename__ = 'downvotes'
+    id = db.Column(db.Integer, primary_key=True)
+    downvote = db.Column(db.Integer, default=1)
+    blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id', ondelete='SET NULL'), nullable=True)
+
+
+    def save_downvote(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def downvote(cls, id):
+        downvote_post = Downvote(user=current_user, pitch_id=id)
+        downvote_post.save_downvote()
+
+    @classmethod
+    def query_downvotes(cls, id):
+        downvote = Downvote.query.filter_by(pitch_id=id).all()
+        return downvote
+
+    def __repr__(self):
+        return f'{self.blog_id}'
+
+
+class Comment(db.Model):
+    __tablename__ = "comments"
+
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String)
+    comment_at = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
+    comment_by = db.Column(db.String)
+    blog_id = db.Column(db.Integer, db.ForeignKey("blogs.id",ondelete='SET NULL'), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id",ondelete='SET NULL'), nullable=True)
+
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def delete_comment(cls, id):
+        gone = Comment.query.filter_by(id=id).first()
+        db.session.delete(gone)
+        db.session.commit()
+
+    @classmethod
+    def get_comments(cls, id):
+        comments = Comment.query.filter_by(post_id=id).all()
+        return comments
+
+    # string representaion to print out a row of a column, important in debugging
+    def __repr__(self):
+        return f'{self.blog_id}'

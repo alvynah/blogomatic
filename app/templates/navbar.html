@@ -10,7 +10,7 @@
             </li>
             {% if current_user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link active" href="{{url_for('main.index')}}">Create Blog</a>
+                <a class="nav-link active" href="{{url_for('main.new_blog')}}">Create Blog</a>
             </li>
             {%endif%}
         </ul>

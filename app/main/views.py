@@ -5,7 +5,7 @@ from ..models import Quote,User,Blog,Upvote,Downvote,Comment,Subscriber
 from .forms import UpdateProfile, BlogForm, CommentForm, UpdateBlogForm,SubscriberForm
 from .. import db,photos
 from flask_login import login_required,current_user
-from ..email import subscriber_message, new_blog_message
+from ..email import mail_message
 
 
 
@@ -24,7 +24,7 @@ def index():
         db.session.add(subscriber)
         db.session.commit()
 
-        subscriber_message("Welcome Subscriber","email/welcome_subscriber", subscriber.email, subscriber=subscriber)
+        mail_message("Welcome Subscriber","email/welcome_subscriber", subscriber.email, subscriber=subscriber)
         return redirect(url_for('main.index'))
 
     return render_template('index.html', quotes=quotes, blogview=blogview, form=form)
@@ -87,7 +87,7 @@ def new_blog():
         new_blog_object.save_blog()
 
         for subscriber in subscribers:
-            new_blog_message("New Blog", "email/new_post_alert",subscriber.email, new_blog_object=new_blog_object)
+            mail_message("New Blog", "email/new_post_alert",subscriber.email, new_blog_object=new_blog_object)
 
 
         return redirect(url_for('main.index'))

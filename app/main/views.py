@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for
 from . import main
 from ..request import get_quotes
 from ..models import Quote
+from flask_login import login_required
 
 @main.route('/')
 def index():

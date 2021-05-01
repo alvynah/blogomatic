@@ -133,7 +133,13 @@ def edit_blog(id):
         db.session.commit()
         return redirect(url_for("main.profile", uname=blog.user.username))
 
-    return render_template("edit_blog.html",
-                           blog=blog,
-                           edit_form=edit_form)
+    return render_template("edit_blog.html",blog=blog,edit_form=edit_form)
 
+
+@main.route("/profile/<int:id>/<int:blog_id>/delete")
+def delete_blog(id, blog_id):
+    user = User.query.filter_by(id=id).first()
+    blog = Blog.query.filter_by(id=blog_id).first()
+    db.session.delete(blog)
+    db.session.commit()
+    return redirect(url_for("main.profile", uname=user.username))

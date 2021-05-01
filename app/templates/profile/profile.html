@@ -65,6 +65,7 @@
                     <br> Comments:{{blog.comment.count()}}
                 </p>
                 <a href="{{url_for('main.edit_blog', id = blog.id)}}"> <i class="fa fa-edit"></i></a>
+                <a href="{{url_for('main.delete_blog', id = user.id, blog_id = blog.id)}}"><i class="fa fa-trash-alt"></i></a>
 
             </div>
 

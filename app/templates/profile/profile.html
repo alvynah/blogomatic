@@ -64,7 +64,7 @@
                 <p> Likes:{{blog.upvote.count()}}<br> Dislikes:{{blog.downvote.count()}}
                     <br> Comments:{{blog.comment.count()}}
                 </p>
-
+                <a href="{{url_for('main.edit_blog', id = blog.id)}}"> <i class="fa fa-edit"></i></a>
 
             </div>
 

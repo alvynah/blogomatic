@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for
 from . import main
 from ..request import get_quotes
 from ..models import Quote,User,Blog,Upvote,Downvote,Comment
-from .forms import UpdateProfile,BlogForm,CommentForm
+from .forms import UpdateProfile, BlogForm, CommentForm, UpdateBlogForm
 from .. import db,photos
 from flask_login import login_required,current_user
 
@@ -22,7 +22,7 @@ def index():
 def profile(uname):
     user = User.query.filter_by(username=uname).first()
     user_id = current_user._get_current_object().id
-    blogs = Blog.query.filter_by(user_id=user_id).all()
+    blogs = Blog.get_all_blogs()
     if user is None:
         abort(404)
 
@@ -117,3 +117,23 @@ def delete_comment(id, comment_id):
     db.session.delete(comment)
     db.session.commit()
     return redirect(url_for("main.comment", id = blog.id))
+
+
+@main.route("/blog/<int:id>/update", methods=["POST", "GET"])
+@login_required
+def edit_blog(id):
+    blog = Blog.query.filter_by(id=id).first()
+    edit_form = UpdateBlogForm()
+
+    if edit_form.validate_on_submit():
+        blog.title = edit_form.title.data
+        blog.blog = edit_form.blog.data
+
+        db.session.add(blog)
+        db.session.commit()
+        return redirect(url_for("main.profile", uname=blog.user.username))
+
+    return render_template("edit_blog.html",
+                           blog=blog,
+                           edit_form=edit_form)
+

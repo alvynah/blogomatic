@@ -18,3 +18,9 @@ class CommentForm(FlaskForm):
     comment_by = StringField("Enter a nickname", validators=[Required()])
     comment = TextAreaField('Enter Comment : ', validators=[Required()])
     submit = SubmitField("Comment")
+
+
+class UpdateBlogForm(FlaskForm):
+    title = StringField("Blog title :", validators=[Required()])
+    blog = TextAreaField("Blog :", validators=[Required()])
+    submit = SubmitField("Update")

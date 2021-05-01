@@ -63,14 +63,10 @@ class Blog(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-    @classmethod
-    def get_user_blogs(cls, id):
-        blogs = Blog.query.filter_by(user_id=id).order_by(Blog.posted_at.desc()).all()
-        return blogs
 
     @classmethod
     def get_all_blogs(cls):
-        return Blog.query.order_by(Post.posted_at).all()
+        return Blog.query.order_by(Blog.time.desc()).all()
     
     def __repr__(self):
         return f'Blog {self.blog}'

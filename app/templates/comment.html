@@ -15,7 +15,8 @@
                     <p class="card-text" style="color:black;font-size:12px;">--- {{comment.comment_by}}</p>
                     {% if blog.user == current_user %}
                     <div>
-                        <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                        <a href="{{url_for( 'main.delete_comment',id=blog.id,comment_id=comment.id)}} ">
+                            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button></a>
                     </div>
                     {% endif %}
                 </div>

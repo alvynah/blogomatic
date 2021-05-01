@@ -13,7 +13,7 @@ def index():
     '''
     #getting Quotes
     quotes=get_quotes()
-    blogview=Blog.query.all()
+    blogview = Blog.get_all_blogs()
 
     return render_template('index.html', quotes=quotes, blogview=blogview)
 
@@ -109,3 +109,11 @@ def comment(id):
         new_comment.save_comment()
         return redirect(url_for('.comment', id=blog.id))
     return render_template('comment.html', form=form, blog=blog, all_comments=all_comments)
+
+@main.route("/blog/<int:id>/<int:comment_id>/delete")
+def delete_comment(id, comment_id):
+    blog = Blog.query.filter_by(id = id).first()
+    comment = Comment.query.filter_by(id = comment_id).first()
+    db.session.delete(comment)
+    db.session.commit()
+    return redirect(url_for("main.comment", id = blog.id))

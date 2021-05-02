@@ -34,26 +34,26 @@ This is a flask web application whose actors are users and writers.Writers are a
 
 |Behaviour 	           |    Input 	                 |       Output          |
 |----------------------------------------------|:-----------------------------------:|-----------------------------:|       
-|    Click on the comment icon on the blog   |    comment|  The user is redirected to a page where they can comment and see other comments on that blog  | 
+| Click on the comment icon on the blog   | comment| The user is redirected to a page where they can comment and see other comments on that blog  | 
 
 2. Subcribe to website 
 
 |Behaviour 	           |    Input 	                 |       Output          |
 |----------------------------------------------|:-----------------------------------:|-----------------------------:|       
-| Enter email in the subscription form and submit   |    email|  A welcoming email is sent to the subscriber and an alert email will be sent every time a new blog is posted  | 
+| Enter email in the subscription form and submit   | email| A welcoming email is sent to the subscriber and an alert email will be sent every time a new blog is posted  | 
 
 
 3. Upvote Blog
 
 |Behaviour 	           |    Input 	                 |       Output          |
 |----------------------------------------------|:-----------------------------------:|-----------------------------:|       
-|    Click on the upvote icon on the blog   |    upvote|  The number of likes is incremented by one on each click  |  
+| Click on the upvote icon on the blog   | upvote| The number of likes is incremented by one on each click  |  
 
 4. Downvote Pitch
 
 |Behaviour 	           |    Input 	                 |       Output          |
 |----------------------------------------------|:-----------------------------------:|-----------------------------:|       
-|    Click on the downvote icon on the blog   |    downvote|  The number of dislikes is incremented by one on each click  |  
+| Click on the downvote icon on the blog   | downvote| The number of dislikes is incremented by one on each click  |  
 
 
 ### WRITERS
@@ -62,40 +62,40 @@ This is a flask web application whose actors are users and writers.Writers are a
 
 |Behaviour 	           |    Input 	                 |       Output          |
 |----------------------------------------------|:-----------------------------------:|-----------------------------:|       
-|    Select sign up from the navigation bar    |    Email, Username, Password|  Writer is redirected to log in page   |  
+| Select sign up from the navigation bar    | Email, Username, Password|   Writer is redirected to log in page   |  
 
 
 2. Log in
 
 |Behaviour 	           |    Input 	                 |       Output          |
 |----------------------------------------------|:-----------------------------------:|-----------------------------:|       
-|    Select login from the navigation bar / actions that redirect to login    |    Email, password |  Writer is authenticated and redirected to landing page|  
+| Select login from the navigation bar / actions that redirect to login    | Email, password |  Writer is authenticated and redirected to landing page|  
 
 
 3. New Blog
 
 |Behaviour 	           |    Input 	                 |       Output          |
 |----------------------------------------------|:-----------------------------------:|-----------------------------:|       
-|    Writer selects new pitch from navigation bar,once they are logged in    |    Title, Blog|  Writer is redirected to landing page where the created blog is displayed   |  
+| Writer selects new pitch from navigation bar,once they are logged in    | Title, Blog| Writer is redirected to landing page where the created blog is displayed   |  
 
 
 4. Delete Comment
 
 |Behaviour 	           |    Input 	                 |       Output          |
 |----------------------------------------------|:-----------------------------------:|-----------------------------:|       
-|    Click on the delete icon on the comment which is available only to the author of the blog  |    comment|  The comment is deleted   |  
+| Click on the delete icon on the comment which is available only to the author of the blog  | comment|  The comment is deleted   |  
 
 5. Edit Post
 
 |Behaviour 	           |    Input 	                 |       Output          |
 |----------------------------------------------|:-----------------------------------:|-----------------------------:|       
-|    Click on the edit icon on the blog from the user profile   |    blog|  The blog is edited and posted   |  
+| Click on the edit icon on the blog from the user profile   | blog| The blog is edited and posted   |  
 
 6. Delete Post
 
 |Behaviour 	           |    Input 	                 |       Output          |
 |----------------------------------------------|:-----------------------------------:|-----------------------------:|       
-|    Click on the delete icon on the blog from the user profile   |    blog|  The blog is deleted and all its properties   |  
+| Click on the delete icon on the blog from the user profile   | blog| The blog is deleted and all its properties   |  
 
 
 

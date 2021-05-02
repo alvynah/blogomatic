@@ -58,9 +58,9 @@
             {% if current_user %}
             <h2 class="text-center"> You have posted {{user.blogs.count()}} blogs </h2>
             {% for blog in blogs%}
-            <div class="pitches">
+            <div class="blogs">
                 <p>Title: {{blog.title}}</p>
-                <p class="pitch"> " {{blog.blog}} "</p>
+                <p class="blog"> " {{blog.blog}} "</p>
                 <p> Likes:{{blog.upvote.count()}}<br> Dislikes:{{blog.downvote.count()}}
                     <br> Comments:{{blog.comment.count()}}
                 </p>
@@ -68,8 +68,7 @@
                 <a href="{{url_for('main.delete_blog', id = user.id, blog_id = blog.id)}}"><i class="fa fa-trash-alt text-danger"> Delete</i></a>
 
             </div>
-
-            {%endfor%} {%else%}
+            <br> {%endfor%}
             <h3>You have no posts</h3>
             {%endif%}
 

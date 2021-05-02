@@ -41,7 +41,8 @@
     float: right;
 }
 
-.fa-thumbs-down {
+.fa-thumbs-down,
+.fa-trash-alt {
     padding-left: 10px;
 }
 
@@ -70,14 +71,14 @@
     width: 60%;
 }
 
-.pitches {
+.blogs {
     background-color: rgb(255, 255, 255, 0.8);
     border-radius: 6px;
     font-size: 16px;
     text-align: center;
 }
 
-.pitch {
+.blog {
     font-style: italic;
     font-size: 20px;
 }

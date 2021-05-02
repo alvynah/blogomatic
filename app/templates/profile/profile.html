@@ -40,8 +40,8 @@
                     {% endif %}
                     <div>
                         <span class="card-title linkUpdate"> {% if user == current_user %}
-                            <a href="{{url_for('main.update_profile',uname=user.username)}}">* Edit profile>></a> {%
-                            endif %}
+                            <a href="{{url_for('main.update_profile',uname=user.username)}}"><i class="fa fa-edit text-primary">Edit Profile</i></a>
+                            {%endif %}
                         </span>
                     </div>
 
@@ -64,8 +64,8 @@
                 <p> Likes:{{blog.upvote.count()}}<br> Dislikes:{{blog.downvote.count()}}
                     <br> Comments:{{blog.comment.count()}}
                 </p>
-                <a href="{{url_for('main.edit_blog', id = blog.id)}}"> <i class="fa fa-edit"></i></a>
-                <a href="{{url_for('main.delete_blog', id = user.id, blog_id = blog.id)}}"><i class="fa fa-trash-alt"></i></a>
+                <a href="{{url_for('main.edit_blog', id = blog.id)}}"> <i class="fa fa-edit text-primary"> Edit</i></a>
+                <a href="{{url_for('main.delete_blog', id = user.id, blog_id = blog.id)}}"><i class="fa fa-trash-alt text-danger"> Delete</i></a>
 
             </div>
 

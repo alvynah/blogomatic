@@ -42,11 +42,38 @@ body {
     font-weight: bold;
 }
 
+hr {
+    border: dotted 2px black;
+}
+
+.header hr {
+    border: solid 1px #f1f1f1cc;
+}
+
+form {
+    margin-top: 5%;
+    width: 100%;
+    padding: 20px;
+    border-radius: 6px;
+    background-color: #f1f1f1cc;
+    box-shadow: 0 0 20px 0 rgba(236, 16, 101);
+    float: center;
+    margin-bottom: 10%;
+    align-items: center;
+    font-size: 16px;
+    font-style: bold;
+}
+
+input#submit.btn:hover {
+    background-color: rgba(165, 42, 89, 0.8) !important;
+}
+
 .subscribeForm {
     text-align: center;
 }
 
 .subscribeForm form {
+    margin-top: 0.5%;
     width: 30%;
     padding: 5px;
     border-radius: 6px;
@@ -60,14 +87,15 @@ body {
     margin-right: auto;
 }
 
-.subscribeForm input#submit.btn {
-    width: 80%;
+input#submit.btn {
+    width: 100%;
     border: none;
     border-radius: 10px;
     background: rgba(236, 16, 101, 0.8);
     font-size: 14px;
     color: #fff;
     cursor: pointer;
+    float: center !important;
 }
 
 .form-check-label {
@@ -98,4 +126,18 @@ input:hover::placeholder {
     border: 1px solid transparent;
     box-shadow: 0 0 6px 0 rgba(236, 16, 101);
     color: rgba(236, 16, 101);
+}
+
+label.control-label {
+    font-size: 20px;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.accountDets {
+    background-color: #f1f1f1cc;
+    border-radius: 20px;
 }

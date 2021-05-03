@@ -12,7 +12,7 @@ This is a flask web application whose actors are users and writers.Writers are a
 ## Screenshot
 
 ## Live Link
-
+[Blogomatic](https://blogomatisized.herokuapp.com/)
 
 ## User Story
 

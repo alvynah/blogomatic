@@ -22,6 +22,9 @@ def index():
     form = SubscriberForm()
     if form.validate_on_submit():
         subscriber = Subscriber(email=form.email.data)
+        if subscriber is not None :
+            return redirect(request.args.get('next') or url_for('main.index'))
+        flash('Email already subscribed')
         db.session.add(subscriber)
         db.session.commit()
 

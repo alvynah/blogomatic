@@ -30,7 +30,7 @@ This is a flask web application whose actors are users and writers.Writers are a
 
 5. Profile
 
-![image](./app/static/images/profile_page.png)
+    ![image](./app/static/images/profile_page.png)
 
 ## Live Link
 [Blogomatic](https://blogomatisized.herokuapp.com/)

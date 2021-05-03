@@ -6,6 +6,7 @@ from .forms import UpdateProfile, BlogForm, CommentForm, UpdateBlogForm,Subscrib
 from .. import db,photos
 from flask_login import login_required,current_user
 from ..email import mail_message
+import markdown2
 
 
 
@@ -129,6 +130,8 @@ def comment(id):
         new_comment.save_comment()
         return redirect(url_for('.comment', id=blog.id))
     return render_template('comment.html', form=form, blog=blog, all_comments=all_comments)
+
+
 
 @main.route("/blog/<int:id>/<int:comment_id>/delete")
 def delete_comment(id, comment_id):

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField,ValidationError,HiddenField
+from wtforms import StringField, TextAreaField, SubmitField, ValidationError, HiddenField
 from wtforms.validators import Required, Email
 from ..models import Subscriber
 
@@ -29,8 +29,7 @@ class UpdateBlogForm(FlaskForm):
 
 
 class SubscriberForm(FlaskForm):
-    some_hiden_field = HiddenField()
-    email = StringField('Enter email:', validators=[Required(), Email()])
+    email = StringField(validators=[Required(), Email()],render_kw={"placeholder": "Enter Email"})
     submit = SubmitField('Subscribe')
 
     def validate_email(self, data_field):

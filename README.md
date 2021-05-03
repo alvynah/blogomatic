@@ -11,19 +11,25 @@ This is a flask web application whose actors are users and writers.Writers are a
 
 ## Screenshot
 1. Landing page
+
     ![image](./app/static/images/landing_page.png)
+
     ![image](./app/static/images/landing_page2.png)
 
 2. Sign in Page
+
     ![image](./app/static/images/sign_in.png)
 
 3. Login page
+
     ![image](./app/static/images/Log_in.png)
 
 4. New Blog
+
     ![image](./app/static/images/new_blog.png)
 
 5. Profile
+
 ![image](./app/static/images/profile_page.png)
 
 ## Live Link

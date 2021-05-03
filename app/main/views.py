@@ -21,7 +21,7 @@ def index():
 
     form = SubscriberForm()
     if form.validate_on_submit():
-        subscriber = Subscriber(email=form.email.data).first()
+        subscriber = Subscriber(email=form.email.data)
         
         db.session.add(subscriber)
         db.session.commit()
@@ -36,7 +36,7 @@ def index():
 def profile(uname):
     user = User.query.filter_by(username=uname).first()
     user_id = current_user._get_current_object().id
-    blogs = Blog.get_all_blogs()
+    blogs = Blog.query.filter_by(user_id=user_id).all()
     if user is None:
         abort(404)
 

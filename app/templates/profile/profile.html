@@ -67,7 +67,7 @@
                 <a href="{{url_for('main.delete_blog', id = user.id, blog_id = blog.id)}}"><i class="fa fa-trash-alt text-danger"> Delete</i></a>
 
             </div>
-            <br> {%endfor%}
+            <br> {%endfor%}{%else%}
             <h3>You have no posts</h3>
             {%endif%}
 

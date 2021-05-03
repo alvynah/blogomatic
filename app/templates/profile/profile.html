@@ -39,10 +39,9 @@
                     <p class="card-title"> {{user.username| capitalize}} has no bio.</p>
                     {% endif %}
                     <div>
-                        <span class="card-title linkUpdate"> {% if user == current_user %}
-                            <a href="{{url_for('main.update_profile',uname=user.username)}}"><i class="fa fa-edit text-primary">Edit Profile</i></a>
-                            {%endif %}
-                        </span>
+                        <p class="linkUpdate"> {% if user == current_user %}
+                            <a href="{{url_for('main.update_profile',uname=user.username)}}"><i class="fa fa-edit text-primary">Edit Profile</i></a> {%endif %}
+                        </p>
                     </div>
 
 

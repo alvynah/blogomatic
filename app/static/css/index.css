@@ -46,8 +46,14 @@ hr {
     border: dotted 2px black;
 }
 
-.header hr {
+.header hr,
+#all hr {
     border: solid 1px #f1f1f1cc;
+}
+
+#headingBlogs {
+    background-color: #f1f1f1cc;
+    font-weight: bold;
 }
 
 form {
@@ -74,7 +80,7 @@ input#submit.btn:hover {
 
 .subscribeForm form {
     margin-top: 0.5%;
-    width: 30%;
+    width: 50%;
     padding: 5px;
     border-radius: 6px;
     background-color: transparent;
@@ -82,6 +88,13 @@ input#submit.btn:hover {
     margin-bottom: 5%;
     align-items: center;
     height: fit-content;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.updateImg form {
+    width: 70%;
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
@@ -98,20 +111,26 @@ input#submit.btn {
     float: center !important;
 }
 
+.subscribeForm input#submit.btn {
+    width: 30%;
+    padding-left: 10px;
+    padding: 5px;
+}
+
 .form-check-label {
     color: white;
 }
 
 textarea.form-control,
-select.form-control,
 input.form-control {
     background-color: white;
     border-radius: 6px;
     font-size: 14px;
 }
 
-select.form-control {
-    height: 3rem !important;
+.subscribeForm input.form-control {
+    width: 40%;
+    padding: 5px;
 }
 
 .form-control:hover,
@@ -140,4 +159,20 @@ h2 {
 .accountDets {
     background-color: #f1f1f1cc;
     border-radius: 20px;
+}
+
+.btn {
+    background: rgb(236, 16, 101);
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#btnSmall button {
+    background: rgb(236, 16, 101);
+    font-size: 10px;
+    align-items: center;
+    height: 30px;
+    border-radius: 5px;
 }

@@ -10,7 +10,16 @@
             <div class="container welcome">
 
                 <h2 class="bold">!Subscribe to get alerts for new blogs!</h2>
-                <div class="subscribeForm">{{ wtf.quick_form(form) }}
+                <div class="subscribeForm">
+                    <form class="form-inline" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group">
+                            {{ form.email.label }} {{ form.email(class="form-control") }} {{ form.submit(class="btn") }}
+
+                        </div>
+
+                    </form>
+
                 </div>
             </div>
 
@@ -25,7 +34,11 @@
 
 
 <div id="all">
-    <br> {{ macro.display(blogview) }}
+    <br>
+    <div class="container" id=headingBlogs>
+        <h1 class="text-center">Latest Blogs</h1>
+    </div>
+    <hr> {{ macro.display(blogview) }}
 </div>
 </div>
 </div>

@@ -45,8 +45,4 @@ a.nav-link {
     padding-left: 10%;
 }
 
-@media screen and (min-width:600px) {
-    #items {
-        float: left;
-    }
-}
+@media screen and (min-width:600px) {}

@@ -7,11 +7,11 @@
 .cards,
 .cardnoContent {
     color: white;
-    background-color: rgb(130, 209, 12, 0.2);
+    background-color: rgb(236, 16, 101, 0.8);
     border-radius: 6px;
     margin-bottom: 4%;
     font-size: 16px;
-    box-shadow: 0 0 20px 0 grey;
+    box-shadow: 0 0 20px 0 #f1f1f1cc;
 }
 
 .card-header {
@@ -26,10 +26,6 @@
     font-family: 'fantasy';
     font-size: 20px;
     border-bottom: 2px solid black;
-}
-
-.pitch {
-    font-style: italic;
 }
 
 .card-footer {
@@ -50,7 +46,7 @@
 .cardsNoComment,
 .cardsProfile {
     color: black;
-    background-color: rgb(130, 209, 12, 0.4);
+    background-color: rgb(236, 16, 101, 0.4);
     border-radius: 6px;
     margin-bottom: 4%;
     font-size: 16px;

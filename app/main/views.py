@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash, request
 from . import main
 from ..request import get_quotes
 from ..models import Quote,User,Blog,Upvote,Downvote,Comment,Subscriber
@@ -21,13 +21,13 @@ def index():
 
     form = SubscriberForm()
     if form.validate_on_submit():
-        subscriber = Subscriber(email=form.email.data)
+        subscriber = Subscriber(email=form.email.data).first()
         if subscriber is not None :
             return redirect(request.args.get('next') or url_for('main.index'))
         flash('Email already subscribed')
         db.session.add(subscriber)
         db.session.commit()
-
+    
         mail_message("Welcome Subscriber","email/welcome_subscriber", subscriber.email, subscriber=subscriber)
         return redirect(url_for('main.index'))
 
